@@ -1,0 +1,29 @@
+/* googleMapsAutocomplete.css */
+:host {
+    display: block;
+}
+
+.suggestions-container {
+    margin-top: 1rem;
+}
+
+.suggestion-item {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    background-color: #fff;
+}
+
+.suggestion-item a {
+    text-decoration: none;
+    color: #0070d2;
+    cursor: pointer;
+    display: block;
+}
+
+.suggestion-item a:hover {
+    background-color: #f4f6f9;
+}
+
+/* You can customize the styles further to match your design preferences. */

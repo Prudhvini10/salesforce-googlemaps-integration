@@ -1,0 +1,95 @@
+<!-- googleMapsAutocomplete.html -->
+<template>
+    <lightning-card  variant="Narrow"  title="Google Search Address" icon-name="standard:address">
+        <div class="slds-var-p-around_small">
+    <div class="slds-m-around_medium">
+        <div>
+            <lightning-input
+                label="Source Address"
+                type="text"
+                data-id="sourceAddress"
+                value={sourceAddress}
+                placeholder="Enter source address"
+                onchange={handleSourceChange}
+            ></lightning-input>
+            <div if:true={hasRecommendations}>
+                <ul class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid"
+                    role="presentation">
+                    <template for:each={sourceSuggestions} for:item="suggestion">
+                        <li key={suggestion.place_id} role="presentation"
+                            onclick={handleAddressRecommendationSelect}
+                            data-value={suggestion.place_id} class="slds-listbox__item">
+                            <span class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta"
+                                role="option">
+                                <span class="slds-media__body slds-m-left_xx-small slds-m-bottom_xx-small">
+                                    <div class="slds-grid slds-m-bottom_small">
+                                        <div class="slds-col slds-size_1-of-10">
+                                            <lightning-button-icon size="medium" icon-name="utility:checkin"
+                                                class="slds-input__icon" variant="bare" onclick={resetAddress}>
+                                            </lightning-button-icon>
+                                        </div>
+                                        <div class="slds-m-left_medium slds-col slds-size_8-of-10">
+                                            <span class="slds-listbox__option-text slds-listbox__option-text_entity">
+                                                <b>{suggestion.description}</b>
+                                            </span>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-10"></div>
+                                    </div>
+                                </span>
+                            </span>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <lightning-input
+                label="Destination Address"
+                type="text"
+                data-id="destinationAddress"
+                value={destinationAddress}
+                placeholder="Enter destination address"
+                onchange={handleDestinationChange}
+            ></lightning-input>
+            <div if:true={hasDestinationRecommendations}>
+                <ul class="slds-listbox slds-listbox_vertical slds-dropdown slds-dropdown_fluid" role="presentation">
+                    <template for:each={destinationSuggestions} for:item="suggestion">
+                        <li key={suggestion.place_id} role="presentation"
+                            onclick={handleDestinationSuggestionClick}
+                            data-value={suggestion.place_id} class="slds-listbox__item">
+                            <span class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta"
+                                role="option">
+                                <span class="slds-media__body slds-m-left_xx-small slds-m-bottom_xx-small">
+                                    <div class="slds-grid slds-m-bottom_small">
+                                        <div class="slds-col slds-size_1-of-10">
+                                            <lightning-button-icon size="medium" icon-name="utility:checkin"
+                                                class="slds-input__icon" variant="bare" onclick={resetAddress}>
+                                            </lightning-button-icon>
+                                        </div>
+                                        <div class="slds-m-left_medium slds-col slds-size_8-of-10">
+                                            <span class="slds-listbox__option-text slds-listbox__option-text_entity">
+                                                <b>{suggestion.description}</b>
+                                            </span>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-10"></div>
+                                    </div>
+                                </span>
+                            </span>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+        <div class="slds-m-top_medium">
+            <lightning-button variant="brand" label="Get Directions" title="Primary action" onclick={handleClick}  class="slds-m-left_x-small"></lightning-button>
+        </div>
+        <div class="slds-m-top_medium">
+            The Time Duration is : {duration} <br/>
+            The Total Distance is : {distance} <br/>
+            The Flying Cost is : ${flyingCost}<br/>
+            The Driving Cost is: ${drivingCost}
+        </div>
+    </div>
+    </div>
+    </lightning-card>
+</template>
